@@ -64,19 +64,26 @@ import org.springframework.context.annotation.Configuration;
 // 애노테이션 기반의 자바 설정클래스로 만든 스프링 컨테이너
 @Configuration
 public class AppConfig {
+
+	// @Bean memberService -> new MemoryMemberRepository()
+	// @Bean orderService -> new MemoryMemberRepository()
+
 	// 생성자 주입
 	@Bean
 	public MemberService memberService() {
+		System.out.println("call AppConfig.memberService");
 		return new MemberServiceImpl(memberRepository());
 	}
 
 	@Bean
 	public MemberRepository memberRepository() {
+		System.out.println("call AppConfig.memberRepository");
 		return new MemoryMemberRepository();
 	}
 
 	@Bean
 	public OrderService orderService() {
+		System.out.println("call AppConfig.orderService");
 		return new OrderServiceImpl(memberRepository(), disCountPolicy());
 	}
 
